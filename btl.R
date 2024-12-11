@@ -212,6 +212,9 @@ pairs(dirt_log$order_total_new ~ dirt_log$order_price + dirt_log$delivery_charge
 # t_result <- t.test(dirt$order_price)
 # print(t_result)
 
+
+
+
 #   # Bỏ ngoại lai order_total_new
 # dirt$order_total_new[dirt$order_total_new %in% outliers] <- NA
 # dirt <- na.omit(dirt)
@@ -229,48 +232,76 @@ pairs(dirt_log$order_total_new ~ dirt_log$order_price + dirt_log$delivery_charge
 # Chưa bỏ ngoại lai
 # anova1 <- aov(dirt$order_total_new ~ dirt$nearest_warehouse)
 # summary(anova1)
+#boxplot(order_total_new ~ nearest_warehouse, data = dirt, main = "Boxplot of Order Total by Warehouse",
+#        xlab = "Warehouse", ylab = "Order Total", col = c("lightblue", "lightgreen"))
+
 #   # Bỏ ngoại lai order_total_new
 # dirt$order_total_new[dirt$order_total_new %in% outliers] <- NA
 # dirt <- na.omit(dirt)
 # anova1 <- aov(dirt$order_total_new ~ dirt$nearest_warehouse)
 # summary(anova1)
+#boxplot(order_total_new ~ nearest_warehouse, data = dirt, main = "Boxplot of Order Total by Warehouse 2",
+#        xlab = "Warehouse", ylab = "Order Total", col = c("lightblue", "lightgreen"))
+
 #   # Bỏ ngoại lai total_new và is_happy_customer
 # dirt <- dirt[-c(38, 53, 57, 84, 94, 100, 120, 201, 222, 223, 251, 265, 296, 383, 415, 419, 424, 434),]
 # anova1 <- aov(dirt$order_total_new ~ dirt$nearest_warehouse)
 # summary(anova1)
+#boxplot(order_total_new ~ nearest_warehouse, data = dirt, main = "Boxplot of Order Total by Warehouse 3",
+#        xlab = "Warehouse", ylab = "Order Total", col = c("lightblue", "lightgreen"))
 
 # # So sánh giá trị đơn đặt hàng theo mùa. Mức ý nghĩa 5%
 #   # Chưa bỏ ngoại lai
 # anoval2 <- aov(dirt$order_total_new ~ dirt$season)
 # summary(anoval2)
+#boxplot(order_total_new ~ season, data = dirt, main = "Boxplot of Order Total by Season",
+#        xlab = "Season", ylab = "Order Total", col = c("lightyellow", "lightpink", "lightgreen", "lightblue"))
+
 #   # Bỏ ngoại lai order_total_new
 # dirt$order_total_new[dirt$order_total_new %in% outliers] <- NA
 # dirt <- na.omit(dirt)
 # anoval2 <- aov(dirt$order_total_new ~ dirt$season)
 # summary(anoval2)
+#boxplot(order_total_new ~ season, data = dirt, main = "Boxplot of Order Total by Season",
+#        xlab = "Season", ylab = "Order Total", col = c("lightyellow", "lightpink", "lightgreen", "lightblue"))
+
 #   # Bỏ ngoại lai total_new và is_happy_customer
 # dirt <- dirt[-c(38, 53, 57, 84, 94, 100, 120, 201, 222, 223, 251, 265, 296, 383, 415, 419, 424, 434),]
 # anoval2 <- aov(dirt$order_total_new ~ dirt$season)
 # summary(anoval2)
+#boxplot(order_total_new ~ season, data = dirt, main = "Boxplot of Order Total by Season",
+#        xlab = "Season", ylab = "Order Total", col = c("lightyellow", "lightpink", "lightgreen", "lightblue"))
 
 # So sánh giá trị đơn đặt hàng hài lòng và người không hài lòng với mức đơn hàng gần nhất. Mức ý nghĩa 5%
 # Chưa bỏ ngoại lai 
 # anoval3 <- aov(dirt$order_total_new ~ dirt$is_happy_customer)
 # summary(anoval3)
+#boxplot(order_total_new ~ is_happy_customer, data = dirt, main = "Boxplot of Order Total by is_happy_customer",
+#        xlab = "is_happy_customer", ylab = "Order Total", col = c("red", "blue"))
+
 # Bỏ ngoại lai order_total_new
 # dirt$order_total_new[dirt$order_total_new %in% outliers] <- NA
 # dirt <- na.omit(dirt)
 # anoval3 <- aov(dirt$order_total_new ~ dirt$is_happy_customer)
 # summary(anoval3)
+#boxplot(order_total_new ~ is_happy_customer, data = dirt, main = "Boxplot of Order Total by is_happy_customer 2",
+#        xlab = "is_happy_customer", ylab = "Order Total", col = c("red", "blue"))
+
 # Bỏ ngoại lai total_new và is_happy_customer
 # dirt <- dirt[-c(38, 53, 57, 84, 94, 100, 120, 201, 222, 223, 251, 265, 296, 383, 415, 419, 424, 434),]
 # anoval3 <- aov(dirt$order_total_new ~ dirt$is_happy_customer)
 # summary(anoval3)
+#boxplot(dirt$order_total_new ~ is_happy_customer, data = dirt, main = "Boxplot of Order Total by is_happy_customer 3",
+#        xlab = "is_happy_customer", ylab = "Order Total", col = c("red", "blue"))
+
 
 ################################################# Hồi quy tuyến tính ############################################
 
 # model = lm(order_total_new ~ order_price + delivery_charges + coupon_discount + distance_to_nearest_warehouse, data = dirt)
 # summary(model)
+#pairs( ~ order_price + delivery_charges + coupon_discount + distance_to_nearest_warehouse, data = dirt,
+#       main = "Scatterplot Matrix",
+#       col = "blue", pch = 16)
 
 # Kiểm định các biến delivery_charges và distance_to_nearest_warehouse đồng thời không ảnh hưởng tới giá trị đơn đặt hàng
 # linearHypothesis(model, c("delivery_charges=0", "distance_to_nearest_warehouse=0"))
@@ -278,6 +309,9 @@ pairs(dirt_log$order_total_new ~ dirt_log$order_price + dirt_log$delivery_charge
 # Chạy lại khi bỏ biến delivery_charges và distance_to_nearest_warehouse
 # model = lm(order_total_new ~ order_price + coupon_discount, data = dirt)
 # summary(model)
+#pairs( ~ order_price + coupon_discount , data = dirt,
+#       main = "Scatterplot Matrix",
+#       col = "blue", pch = 16)
 
 # Hồi quy
 # dirt$order_total_new[dirt$order_total_new %in% outliers] <- NA
@@ -285,6 +319,10 @@ pairs(dirt_log$order_total_new ~ dirt_log$order_price + dirt_log$delivery_charge
 # dirt <- dirt[-c(38, 53, 57, 84, 94, 100, 120, 201, 222, 223, 251, 265, 296, 383, 415, 419, 424, 434),]
 # model = lm(order_total_new ~ order_price + delivery_charges + coupon_discount + distance_to_nearest_warehouse, data = dirt)
 # summary(model)
+#pairs( ~ order_price + delivery_charges + coupon_discount + distance_to_nearest_warehouse , data = dirt,
+#       main = "Scatterplot Matrix",
+#       col = "blue", pch = 16)
+
 
 # Kiểm định các biến delivery_charges đồng thời không ảnh hưởng tới giá trị đơn đặt hàng
 # linearHypothesis(model, c("delivery_charges=0"))
@@ -292,3 +330,6 @@ pairs(dirt_log$order_total_new ~ dirt_log$order_price + dirt_log$delivery_charge
 # Chạy lại khi bỏ biến delivery_charges
 # model = lm(order_total_new ~ order_price + coupon_discount + distance_to_nearest_warehouse, data = dirt)
 # summary(model)
+#pairs( ~ order_price + coupon_discount + distance_to_nearest_warehouse , data = dirt,
+#       main = "Scatterplot Matrix",
+#       col = "blue", pch = 16)
